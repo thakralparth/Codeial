@@ -23,7 +23,7 @@ module.exports.signIn=function(req,res){
     if(req.isAuthenticated()){
         return res.redirect('/users/profile');
     }
-    
+
     return res.render('user_sign_in',{
         title:"Codeial | Sign In"
     })
@@ -61,3 +61,9 @@ module.exports.createSession=function(req,res){
     return res.redirect('/');
 }
 
+
+//remove session
+module.exports.destroySession=function(req,res){
+    req.logout();   //here logout property is provided to request by passport
+    res.redirect('/');
+}
