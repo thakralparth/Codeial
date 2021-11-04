@@ -1,0 +1,21 @@
+header {
+  height: 50px;
+  background-color: coral;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+  header #codeial {
+    font-size: larger;
+    color: black;
+    font-weight: bolder;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-top: 15px;
+    margin-left: 20px; }
+  header #route-buttons li {
+    display: inline-block;
+    font-size: larger;
+    font-weight: bolder;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; }
+    header #route-buttons li a {
+      text-decoration: none;
+      color: black; }

@@ -1,24 +1,27 @@
 <header>
-    Page Header
+    <div id="codeial">
+        Codeial
+    </div>
+    <div id="route-buttons">
+        <ul>
+            <% if (locals.user){ %>
+                <li>
+                    <a href="/users/profile">
+                        <%= user.name %>
+                    </a>
+                </li>
 
-    <ul>
-        <% if (locals.user){ %>
-            <li>
-                <a href="/users/profile">
-                    <%= user.name %>
-                </a>
-            </li>
-
-            <li>
-                <a href="/users/sign-out">SignOut</a>
-            </li>
-        <% }else{ %>
-            <li>
-                <a href="/users/sign-in">SignIn</a>
-            </li>
-            <li>
-                <a href="/users/sign-up">SignUp</a>
-            </li>
-        <% } %>
-    </ul>
+                <li>
+                    <a href="/users/sign-out">SignOut</a>
+                </li>
+            <% }else{ %>
+                <li>
+                    <a href="/users/sign-in">SignIn</a>
+                </li>
+                <li>
+                    <a href="/users/sign-up">SignUp</a>
+                </li>
+            <% } %>
+        </ul>
+    </div>
 </header>
