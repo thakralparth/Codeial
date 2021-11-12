@@ -2,6 +2,8 @@ header{
     height:50px;
     background-color: coral;
     display:flex;
+    position: fixed;
+    width:100%;
     flex-direction: row;
     justify-content: space-between;
     #codeial{
