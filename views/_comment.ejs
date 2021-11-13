@@ -1,0 +1,19 @@
+<li>
+    <p>
+        <% if (locals.user && locals.user.id==post.user.id){ %>  <!--user logged in and logged in user==user who posted-->
+            <small> 
+                <a href="/comments/destroy/<%= comment.id %>">X</a>
+            </small>
+        
+        <% }else if (locals.user && locals.user.id==comment.user.id){ %>  <!--user logged in and logged in user==user who posted-->
+            <small> 
+                <a href="/comments/destroy/<%= comment.id %>">X</a>
+            </small>
+        <% } %>
+        <%= comment.content %>
+        <br>
+        <small>
+            <%= comment.user.name %>
+        </small>
+    </p>
+</li>
