@@ -1,4 +1,6 @@
 body {
-  text-align: center;
+  text-align: left;
   margin: 0;
   background-color: khaki; }
+  body #main-layout {
+    min-height: 100%; }

@@ -18,3 +18,8 @@
 
 .post-comments-list li {
   list-style-type: none; }
+
+#user-friends {
+  position: absolute;
+  right: 10%;
+  top: 15%; }

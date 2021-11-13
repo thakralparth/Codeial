@@ -4,7 +4,8 @@ footer {
   background-color: coral;
   position: fixed;
   bottom: 0%;
-  padding-top: 5px; }
+  padding-top: 5px;
+  text-align: center; }
   footer a {
     text-decoration: none;
     font-size: larger;
