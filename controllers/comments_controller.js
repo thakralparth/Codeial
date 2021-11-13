@@ -24,3 +24,17 @@ module.exports.create=function(req,res){
         }
     })
 }
+
+//deleting comment
+module.exports.destroy=function(req,res){
+    Comment.findById(req.params.id,function(err,comment){
+        if(comment.user==req.user.id){
+            let postId=comment.post;   //store post id in a var before deleting comment to remove comment from post later
+            Post.findByIdAndUpdate(postId,{ $pull : {comments:req.params.id}},function(err,post){
+                return res.redirect('back');   //$pull--- pulls and throws out the stored value
+            })
+        }else{
+            return res.redirect('back');
+        }
+    })
+}

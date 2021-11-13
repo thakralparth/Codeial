@@ -1,4 +1,5 @@
 const Post=require('../models/post');
+const Comment=require('../models/comment');
 
 module.exports.create=function(req,res){
     Post.create({
@@ -10,5 +11,23 @@ module.exports.create=function(req,res){
             return;
         }
         return res.redirect('back');
+    })
+}
+
+
+//The req.params property is an object containing properties mapped to the named route “parameters”. 
+//For example, if you have the route /student/:id, then the “id” property is available as req.params.id. 
+module.exports.destroy=function(req,res){
+    Post.findById(req.params.id,function(err,post){
+        // .id means converting the object id to string (instead of ._id)
+        if(post.user==req.user.id){
+            post.remove();
+
+            Comment.deleteMany({post:req.params.id},function(err){
+                return res.redirect('back');
+            });
+        }else{
+            return res.redirect('back');
+        }
     })
 }
