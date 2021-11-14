@@ -1,3 +1,4 @@
+const { request } = require('express');
 const User=require('../models/users');
 
 module.exports.profile=function(req,res){
@@ -14,7 +15,7 @@ module.exports.profile=function(req,res){
 
 module.exports.update=function(req,res){
     if(req.user.id==req.params.id){
-        User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+        User.findByIdAndUpdate(req.params.id,req.body,function(err,user){  //req.body={name:req.body.name,email:req.body.email}
             return res.redirect('back');
         })
     }else{
@@ -74,6 +75,7 @@ module.exports.create=function(req,res){
 //SignIn and create session for user
 module.exports.createSession=function(req,res){
     // TODO later 
+    req.flash('success','Logged in successfully');
     return res.redirect('/');
 }
 
@@ -81,5 +83,6 @@ module.exports.createSession=function(req,res){
 //remove session
 module.exports.destroySession=function(req,res){
     req.logout();   //here logout property is provided to request by passport
+    req.flash('success','You have been logged out');
     res.redirect('/');
 }

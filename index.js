@@ -23,6 +23,9 @@ const passportLocal=require('./config/passport-local-strategy');
 //persistent session storage
 const MongoStore=require('connect-mongo')(session);  //this session is express-session
 
+const flash=require('connect-flash');
+const customMware=require('./config/middleware');
+
 app.use(express.urlencoded());
 app.use(cookieParser());
 
@@ -64,6 +67,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+
+app.use(flash());   //defined below session bcz it uses session cookie to be stored
+app.use(customMware.setFlash);
 
 //use express router
 app.use('/',require('./routes'));
