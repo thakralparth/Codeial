@@ -64,9 +64,11 @@ module.exports.create=function(req,res){
                     console.log('Error in creating a user while signing up');
                     return;
                 }
+                req.flash('success','User signed-up!');
                 return res.redirect('/users/sign-in');
             })
         }else{
+            req.flash('error','Email-id unavailable!');
             return res.redirect('back');
         }
     });

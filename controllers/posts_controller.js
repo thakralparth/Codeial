@@ -7,11 +7,11 @@ module.exports.create=async function(req,res){
             content:req.body.content,
             user:req.user._id
         });
-
+        req.flash('success','Post created successfully');
         return res.redirect('back');
 
     }catch(err){
-        console.log('Error',err);
+        req.flash('Error',err);
         return;
     }
 
@@ -28,14 +28,14 @@ module.exports.destroy=async function(req,res){
         post.remove();
 
         await Comment.deleteMany({post:req.params.id});  //query for deleting comments of post:id of that post
-           
+        req.flash('success','Post and its associated comments removed');  
         return res.redirect('back');
         
     }else{
         return res.redirect('back');
     }
     }catch(err){
-        console.log("Error",err);
+        req.flash("Error",err);
         return;
     }
  

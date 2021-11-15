@@ -14,11 +14,11 @@ module.exports.create=async function(req,res){
 
             post.comments.push(comment);    //update the desired post with the comment
             post.save();   //to move data from RAM memory to database
-
+            req.flash('success','Comment made successfully!');
             res.redirect('/');
         }
     }catch(err){
-        console.log('Error',err);
+        req.flash('Error',err);
         return;
     }
 }
@@ -33,14 +33,14 @@ module.exports.destroy=async function(req,res){
             comment.remove();
             
             let post=await Post.findByIdAndUpdate(postId,{ $pull : {comments: req.params.id}});
-
+            req.flash('success','Comment removed');
             return res.redirect('back');   //$pull--- pulls and throws out the stored value
             
         }else{
             return res.redirect('back');
         }
     }catch(err){
-        console.log("error",err);
+        req.flash("error",err);
         return;
     }
 
