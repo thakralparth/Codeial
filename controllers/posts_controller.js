@@ -38,6 +38,18 @@ module.exports.destroy=async function(req,res){
         post.remove();
 
         await Comment.deleteMany({post:req.params.id});  //query for deleting comments of post:id of that post
+
+        if(req.xhr){
+            return res.status(200).json({
+                data:{
+                    post_id:req.params.id
+                },
+                message:'Post deleted'
+            });
+        }
+
+
+
         req.flash('success','Post and its associated comments removed');  
         return res.redirect('back');
         
