@@ -12,6 +12,8 @@ module.exports.create=async function(req,res){
                 user:req.user._id
             });
 
+            
+
             post.comments.push(comment);    //update the desired post with the comment
             post.save();   //to move data from RAM memory to database
             req.flash('success','Comment made successfully!');

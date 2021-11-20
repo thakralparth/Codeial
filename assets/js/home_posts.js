@@ -11,7 +11,7 @@
                 url:'/posts/create',
                 data:newPostForm.serialize(),  //convert data in form of json i.e key :value
                 success:function(data){
-                    // console.log(data);
+                    console.log(data);
                     let newPost= newPostDom(data.data.post);
                     $('#posts-list-container>ul').prepend(newPost);
                     deletePost($(' .delete-post-button'),newPost);
