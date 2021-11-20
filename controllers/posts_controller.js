@@ -9,6 +9,7 @@ module.exports.create=async function(req,res){
         });
 
         if(req.xhr){   //xml http request
+            // req.flash('success','New Post successfully added!');
             return res.status(200).json({    //we return json with a status
                 data:{
                     post:post
