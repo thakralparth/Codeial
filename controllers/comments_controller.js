@@ -12,10 +12,21 @@ module.exports.create=async function(req,res){
                 user:req.user._id
             });
 
-            
-
             post.comments.push(comment);    //update the desired post with the comment
             post.save();   //to move data from RAM memory to database
+
+            if(req.xhr){
+                // Similar for comments to fetch the user's id!
+                comment = await comment.populate('user', 'name');
+
+                return res.status(200).json({
+                    data:{
+                        comment:comment
+                    }
+                })
+            }
+
+            
             req.flash('success','Comment made successfully!');
             res.redirect('/');
         }
@@ -35,6 +46,17 @@ module.exports.destroy=async function(req,res){
             comment.remove();
             
             let post=await Post.findByIdAndUpdate(postId,{ $pull : {comments: req.params.id}});
+
+            if(req.xhr){
+                return res.status(200).json({
+                    data:{
+                        
+                        comment_id:req.params.id
+                    },
+                    message:'Post deleted'
+                });
+            }
+
             req.flash('success','Comment removed');
             return res.redirect('back');   //$pull--- pulls and throws out the stored value
             
