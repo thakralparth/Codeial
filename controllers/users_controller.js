@@ -1,5 +1,7 @@
 const { request } = require('express');
 const User=require('../models/users');
+const fs=require('fs');
+const path=require('path');
 
 module.exports.profile=function(req,res){
     // res.end('<h1>User Profile</h1>');
@@ -36,7 +38,14 @@ if(req.user.id==req.params.id){
 
             if(req.file){
                 //this is saving the path of the uploaded file into the avatar field in the user 
-                user.avatar=User.avatarPath + '/' + req.file.filename;
+
+              //  if(!user.avatar){
+                    user.avatar=User.avatarPath + '/' + req.file.filename;
+                // }else{
+                //     fs.unlinkSync(path.join(__dirname,'..',user.avatar));
+                //     user.avatar=User.avatarPath + '/' + req.file.filename;
+                // }
+                
             }
             // console.log(user);
             user.save();
